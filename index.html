@@ -24,6 +24,7 @@
       </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="#services">Services</a></li>
+        <li><a href="#pricing">Pricing</a></li>
         <li><a href="#why-us">Why Us</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact" class="nav-cta">Get a Free Consultation</a></li>
@@ -165,6 +166,80 @@
           </article>
 
         </div>
+      </div>
+    </section>
+
+    <!-- ===== PRICING ===== -->
+    <section class="pricing section" id="pricing">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Simple, Transparent Pricing</p>
+          <h2>Plans Built for <span class="accent-text">Small Business</span></h2>
+          <p class="section-sub">No hidden fees, no long-term contracts. Pick the plan that fits your business today — and scale as you grow.</p>
+        </div>
+        <div class="pricing-grid">
+
+          <article class="pricing-card">
+            <div class="pricing-card-header">
+              <h3>Starter</h3>
+              <div class="pricing-price">
+                <span class="pricing-from">starting at</span>
+                <span class="pricing-amount">$199</span>
+                <span class="pricing-period">/mo</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li>Monthly bookkeeping (up to 100 transactions)</li>
+              <li>Quarterly financial reports</li>
+              <li>Annual tax filing (individual)</li>
+              <li>Email support</li>
+            </ul>
+            <a href="#contact" class="btn btn-ghost">Get Started</a>
+          </article>
+
+          <article class="pricing-card pricing-card--featured">
+            <div class="pricing-badge">Most Popular</div>
+            <div class="pricing-card-header">
+              <h3>Business</h3>
+              <div class="pricing-price">
+                <span class="pricing-from">starting at</span>
+                <span class="pricing-amount">$499</span>
+                <span class="pricing-period">/mo</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li>Monthly bookkeeping (up to 500 transactions)</li>
+              <li>Monthly financial reports</li>
+              <li>Annual business tax filing</li>
+              <li>Payroll processing (up to 5 employees)</li>
+              <li>Priority email &amp; phone support</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary">Get Started</a>
+          </article>
+
+          <article class="pricing-card">
+            <div class="pricing-card-header">
+              <h3>Growth</h3>
+              <div class="pricing-price">
+                <span class="pricing-from">starting at</span>
+                <span class="pricing-amount">$999</span>
+                <span class="pricing-period">/mo</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li>Full outsourced accounting</li>
+              <li>Unlimited transactions</li>
+              <li>Monthly financial reports + analysis</li>
+              <li>Business + personal tax filing</li>
+              <li>Payroll processing (unlimited employees)</li>
+              <li>Dedicated accountant</li>
+              <li>Phone, email &amp; video support</li>
+            </ul>
+            <a href="#contact" class="btn btn-ghost">Get Started</a>
+          </article>
+
+        </div>
+        <p class="pricing-note">All plans include a free initial consultation. Tax-only and à la carte services available — <a href="#contact">contact us</a> for a custom quote.</p>
       </div>
     </section>
 
@@ -484,7 +559,7 @@
     sections.forEach(s => observer.observe(s));
 
     // ── Reveal on scroll
-    const revealEls = document.querySelectorAll('.service-card, .pillar, .stat, .about-content');
+    const revealEls = document.querySelectorAll('.service-card, .pricing-card, .pillar, .stat, .about-content');
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
