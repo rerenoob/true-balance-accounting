@@ -586,10 +586,10 @@
                 otherServicesCheckbox.addEventListener('change', function() {
                     if (this.checked) {
                         otherServicesContainer.style.display = 'block';
-                        // Smooth scroll to show the text field
-                        setTimeout(() => {
-                            otherServicesContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                        }, 100);
+                        // Optional: Smooth scroll to show the text field (commented out)
+                        // setTimeout(() => {
+                        //     otherServicesContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        // }, 100);
                     } else {
                         otherServicesContainer.style.display = 'none';
                         // Clear the text field when unchecked
@@ -714,8 +714,8 @@
                 // Show recommendation
                 recommendationSection.classList.add('show');
                 
-                // Scroll to recommendation smoothly
-                recommendationSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                // Optional: Scroll to recommendation smoothly (commented out)
+                // recommendationSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
             
             // Add event listeners
@@ -758,11 +758,11 @@
                 
                 if (!valid) {
                     event.preventDefault();
-                    // Scroll to first error
-                    const firstError = document.querySelector('.form-error.show');
-                    if (firstError) {
-                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
+                    // Optional: Scroll to first error (commented out)
+                    // const firstError = document.querySelector('.form-error.show');
+                    // if (firstError) {
+                    //     firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    // }
                 } else {
                     // Change button text to show submission in progress
                     const submitBtn = document.getElementById('submit-btn');
