@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Get started with Golden Flow Accounting and Tax. Complete our smart onboarding form for a personalized service recommendation and free consultation." />
+  <title>Get Started - Golden Flow Accounting and Tax | Texas CPA & Tax Services</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+        .onboarding-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .onboarding-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .onboarding-header h1 {
+            color: #2E7D32;
+            margin-bottom: 10px;
+        }
+        .onboarding-subtitle {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+        .form-progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .form-progress:before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e0e0e0;
+            z-index: 1;
+        }
+        .progress-step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .step-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+            color: #7f8c8d;
+        }
+        .step-circle.active {
+            background: #2E7D32;
+            border-color: #2E7D32;
+            color: white;
+        }
+        .step-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+        .step-label.active {
+            color: #2E7D32;
+            font-weight: 500;
+        }
+        .form-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e0e0e0;
+        }
+        .section-title {
+            color: #2E7D32;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f7f0;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2E7D32;
+            font-weight: 500;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #C9A84C;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+        }
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .checkbox-group label,
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: normal;
+            color: #333;
+            cursor: pointer;
+        }
+        .checkbox-group input[type="checkbox"],
+        .radio-group input[type="radio"] {
+            width: auto;
+            margin: 0;
+        }
+        .recommendation-card {
+            background: #f0f7f0;
+            border-left: 4px solid #C9A84C;
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin: 30px 0;
+            display: none;
+        }
+        .recommendation-card.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .recommendation-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .recommendation-icon {
+            font-size: 1.5rem;
+        }
+        .package-badge {
+            display: inline-block;
+            background: #C9A84C;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .package-features {
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+        .package-features li {
+            margin-bottom: 8px;
+        }
+        .form-actions {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .btn-submit {
+            background: #2E7D32;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        .btn-submit:hover {
+            background: #1B5E20;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+        }
+        .form-note {
+            text-align: center;
+            color: #7f8c8d;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .required-note {
+            color: #d32f2f;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        .form-error {
+            color: #d32f2f;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+        .form-error.show {
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <header class="site-header" id="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Golden Flow Accounting and Tax" class="logo-image" />
+        <span class="logo-text">Golden Flow <em>Accounting and Tax</em></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#pricing">Pricing</a></li>
+        <li><a href="index.html#why-us">Why Us</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="client-facing-projects.html" class="nav-tech">Client Projects</a></li>
+        <li><a href="technical-roadmap.html" class="nav-tech">Tech Roadmap</a></li>
+        <li><a href="onboarding.html" class="nav-cta">Get a Free Consultation</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="onboarding-container">
+        <div class="onboarding-header">
+            <h1>Get Started with Golden Flow</h1>
+            <p class="onboarding-subtitle">Complete this form to get a personalized service recommendation and free consultation. We'll contact you within 24 hours.</p>
+            
+            <div class="form-progress">
+                <div class="progress-step">
+                    <div class="step-circle active">1</div>
+                    <div class="step-label active">Business Info</div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Services Needed</div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">Current System</div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-circle">4</div>
+                    <div class="step-label">Contact Info</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Smart Onboarding Form -->
+        <form id="goldenflow-onboarding" action="https://formspree.io/f/YOUR_FORMSPREE_ID_HERE" method="POST">
+            <!-- Hidden fields for Formspree -->
+            <input type="hidden" name="_subject" value="New Golden Flow Onboarding Submission">
+            <input type="hidden" name="_replyto" value="" id="reply-to-email">
+            <input type="hidden" name="_cc" value="info@goldenflowaccountingtax.com">
+            
+            <!-- Step 1: Business Information -->
+            <div class="form-section">
+                <h2 class="section-title">About Your Business</h2>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="business-name">Business Name *</label>
+                        <input type="text" id="business-name" name="business-name" required>
+                        <div class="form-error" id="business-name-error">Please enter your business name</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="business-type">Business Type</label>
+                        <select id="business-type" name="business-type">
+                            <option value="">Select type...</option>
+                            <option value="sole-proprietor">Sole Proprietor</option>
+                            <option value="llc">LLC</option>
+                            <option value="corporation">Corporation (S-Corp/C-Corp)</option>
+                            <option value="partnership">Partnership</option>
+                            <option value="nonprofit">Nonprofit</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="industry">Industry</label>
+                        <select id="industry" name="industry">
+                            <option value="">Select industry...</option>
+                            <option value="professional-services">Professional Services</option>
+                            <option value="retail">Retail</option>
+                            <option value="restaurant">Restaurant/Food Service</option>
+                            <option value="construction">Construction</option>
+                            <option value="technology">Technology</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="consulting">Consulting</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="annual-revenue">Annual Revenue *</label>
+                        <select id="annual-revenue" name="annual-revenue" required>
+                            <option value="">Select revenue range...</option>
+                            <option value="under-50k">Under $50,000</option>
+                            <option value="50k-100k">$50,000 - $100,000</option>
+                            <option value="100k-250k">$100,000 - $250,000</option>
+                            <option value="250k-500k">$250,000 - $500,000</option>
+                            <option value="500k-1m">$500,000 - $1,000,000</option>
+                            <option value="over-1m">Over $1,000,000</option>
+                        </select>
+                        <div class="form-error" id="revenue-error">Please select your annual revenue range</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="employees">Number of Employees</label>
+                    <select id="employees" name="employees">
+                        <option value="">Select...</option>
+                        <option value="1">Just me</option>
+                        <option value="2-5">2-5 employees</option>
+                        <option value="6-10">6-10 employees</option>
+                        <option value="11-25">11-25 employees</option>
+                        <option value="26-50">26-50 employees</option>
+                        <option value="51+">51+ employees</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Step 2: Services Needed -->
+            <div class="form-section">
+                <h2 class="section-title">Services Needed</h2>
+                <p>Select all services you're interested in:</p>
+                
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="services" value="bookkeeping">
+                        <strong>Bookkeeping & Monthly Reporting</strong> - Track income/expenses, generate financial statements
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="services" value="tax-prep">
+                        <strong>Tax Preparation & Filing</strong> - Federal, state, and local tax returns
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="services" value="payroll">
+                        <strong>Payroll Processing</strong> - Employee payments, tax withholdings, filings
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="services" value="sales-tax">
+                        <strong>Sales Tax Filing</strong> - Texas sales tax collection and remittance
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="services" value="entity-formation">
+                        <strong>Business Entity Formation</strong> - LLC setup, EIN registration, operating agreements
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="services" value="irs-notice">
+                        <strong>IRS Notice Response</strong> - Handle IRS letters and compliance issues
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="services" value="financial-planning">
+                        <strong>Financial Planning & Strategy</strong> - Cash flow analysis, growth planning
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Step 3: Current System -->
+            <div class="form-section">
+                <h2 class="section-title">Current Accounting System</h2>
+                
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="current-system" value="quickbooks">
+                        QuickBooks (Online or Desktop)
+                    </label>
+                    
+                    <label>
+                        <input type="radio" name="current-system" value="xero">
+                        Xero
+                    </label>
+                    
+                    <label>
+                        <input type="radio" name="current-system" value="freshbooks">
+                        FreshBooks
+                    </label>
+                    
+                    <label>
+                        <input type="radio" name="current-system" value="excel">
+                        Excel/Google Sheets
+                    </label>
+                    
+                    <label>
+                        <input type="radio" name="current-system" value="manual">
+                        Manual (paper receipts, spreadsheets)
+                    </label>
+                    
+                    <label>
+                        <input type="radio" name="current-system" value="other-software">
+                        Other accounting software
+                    </label>
+                    
+                    <label>
+                        <input type="radio" name="current-system" value="none">
+                        No system yet - just starting out
+                    </label>
+                </div>
+                
+                <div class="form-group" style="margin-top: 20px;">
+                    <label for="pain-points">What are your biggest accounting challenges or pain points?</label>
+                    <textarea id="pain-points" name="pain-points" rows="3" placeholder="e.g., Too much time on bookkeeping, confusing tax rules, payroll errors..."></textarea>
+                </div>
+            </div>
+            
+            <!-- Step 4: Contact Information -->
+            <div class="form-section">
+                <h2 class="section-title">Contact Information</h2>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="contact-name">Your Name *</label>
+                        <input type="text" id="contact-name" name="contact-name" required>
+                        <div class="form-error" id="name-error">Please enter your name</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="title">Your Title/Role</label>
+                        <input type="text" id="title" name="title" placeholder="e.g., Owner, CEO, Manager">
+                    </div>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="form-error" id="email-error">Please enter a valid email address</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="best-time">Best Time to Contact</label>
+                        <select id="best-time" name="best-time">
+                            <option value="">Any time is fine</option>
+                            <option value="morning">Morning (9 AM - 12 PM)</option>
+                            <option value="afternoon">Afternoon (1 PM - 5 PM)</option>
+                            <option value="evening">Evening (after 5 PM)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="timeline">When do you need services to start?</label>
+                        <select id="timeline" name="timeline">
+                            <option value="">Select timeline...</option>
+                            <option value="immediately">Immediately (within 2 weeks)</option>
+                            <option value="1-month">Within 1 month</option>
+                            <option value="1-3-months">1-3 months</option>
+                            <option value="3-6-months">3-6 months</option>
+                            <option value="just-researching">Just researching options</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="how-heard">How did you hear about us?</label>
+                    <select id="how-heard" name="how-heard">
+                        <option value="">Select...</option>
+                        <option value="google">Google Search</option>
+                        <option value="referral">Referral from friend/client</option>
+                        <option value="social-media">Social Media</option>
+                        <option value="event">Business Event/Networking</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Smart Recommendation Display -->
+            <div class="recommendation-card" id="recommendation-section">
+                <div class="recommendation-header">
+                    <span class="recommendation-icon">🎯</span>
+                    <h3 style="margin: 0;">Our Personalized Recommendation</h3>
+                </div>
+                
+                <p id="recommendation-text">Based on your business information, we recommend:</p>
+                
+                <div id="package-details">
+                    <!-- Filled by JavaScript -->
+                </div>
+                
+                <p style="margin-top: 15px; font-style: italic; color: #2E7D32;">
+                    This recommendation will be included in our consultation. We'll review all details and provide a customized proposal.
+                </p>
+            </div>
+            
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button type="submit" class="btn-submit" id="submit-btn">
+                    Get Your Free Consultation
+                </button>
+                
+                <p class="form-note">
+                    By submitting this form, you agree to be contacted by Golden Flow Accounting and Tax. 
+                    We respect your privacy and will never share your information.
+                </p>
+                
+                <p class="required-note">* Required fields</p>
+            </div>
+        </form>
+    </div>
+  </main>
+
+    <!-- JavaScript for Smart Recommendations -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form elements
+            const form = document.getElementById('goldenflow-onboarding');
+            const revenueSelect = document.getElementById('annual-revenue');
+            const servicesCheckboxes = document.querySelectorAll('input[name="services"]');
+            const recommendationSection = document.getElementById('recommendation-section');
+            const recommendationText = document.getElementById('recommendation-text');
+            const packageDetails = document.getElementById('package-details');
+            const emailInput = document.getElementById('email');
+            const replyToHidden = document.getElementById('reply-to-email');
+            
+            // Update hidden reply-to field when email changes
+            emailInput.addEventListener('input', function() {
+                replyToHidden.value = this.value;
+            });
+            
+            // Smart recommendation logic
+            function updateRecommendation() {
+                const revenue = revenueSelect.value;
+                const selectedServices = Array.from(servicesCheckboxes)
+                    .filter(cb => cb.checked)
+                    .map(cb => cb.value);
+                
+                // Only show recommendation if revenue is selected
+                if (!revenue) {
+                    recommendationSection.classList.remove('show');
+                    return;
+                }
+                
+                // Determine package based on revenue
+                let packageType, packageName, price, features, description;
+                
+                if (revenue === 'under-50k' || revenue === '50k-100k') {
+                    packageType = 'starter';
+                    packageName = 'Starter Package';
+                    price = '$199/month';
+                    description = 'Perfect for small businesses getting started with professional accounting.';
+                    features = [
+                        'Monthly bookkeeping & reconciliation',
+                        'Basic financial statements (P&L, Balance Sheet)',
+                        'Quarterly tax estimates',
+                        'Unlimited email support',
+                        'Annual tax preparation (1040 + Schedule C)'
+                    ];
+                } 
+                else if (revenue === '100k-250k' || revenue === '250k-500k') {
+                    packageType = 'business';
+                    packageName = 'Business Package';
+                    price = '$499/month';
+                    description = 'Comprehensive accounting for growing businesses.';
+                    features = [
+                        'Everything in Starter, plus:',
+                        'Monthly financial reports with insights',
+                        'Cash flow forecasting',
+                        'Sales tax filing (Texas)',
+                        'Payroll processing available',
+                        'Quarterly business reviews',
+                        'Annual tax planning session'
+                    ];
+                } 
+                else { // 500k-1m or over-1m
+                    packageType = 'growth';
+                    packageName = 'Growth Package';
+                    price = '$999/month';
+                    description = 'Strategic accounting partnership for established businesses.';
+                    features = [
+                        'Everything in Business, plus:',
+                        'Monthly CFO-level insights',
+                        'Strategic financial planning',
+                        'Custom KPI dashboards',
+                        'Priority support & dedicated account manager',
+                        'Tax optimization strategies',
+                        'Business entity advisory'
+                    ];
+                }
+                
+                // Add service-specific notes
+                if (selectedServices.includes('payroll')) {
+                    features.push('✓ Payroll processing included');
+                }
+                
+                if (selectedServices.includes('entity-formation')) {
+                    features.push('✓ Business entity formation service available');
+                }
+                
+                if (selectedServices.includes('irs-notice')) {
+                    features.push('✓ IRS notice response support included');
+                }
+                
+                // Update recommendation display
+                recommendationText.textContent = `Based on your business size and needs, we recommend our ${packageName}.`;
+                
+                packageDetails.innerHTML = `
+                    <div style="margin: 20px 0;">
+                        <div class="package-badge">${packageName}</div>
+                        <strong style="color: #2E7D32; font-size: 1.2rem;">${price}</strong>
+                        <p style="margin: 10px 0; color: #555;">${description}</p>
+                        
+                        <div style="margin-top: 15px;">
+                            <strong>Includes:</strong>
+                            <ul class="package-features">
+                                ${features.map(feature => `<li>${feature}</li>`).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div style="margin-top: 20px; padding: 15px; background: white; border-radius: 5px; border: 1px solid #e0e0e0;">
+                            <strong>Next Steps:</strong>
+                            <ol style="margin: 10px 0 0 20px;">
+                                <li>We'll schedule your free consultation within 24 hours</li>
+                                <li>Review your specific needs and this recommendation</li>
+                                <li>Provide customized proposal with exact pricing</li>
+                                <li>Onboard smoothly with our team</li>
+                            </ol>
+                        </div>
+                    </div>
+                `;
+                
+                // Show recommendation
+                recommendationSection.classList.add('show');
+                
+                // Scroll to recommendation smoothly
+                recommendationSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+            
+            // Add event listeners
+            revenueSelect.addEventListener('change', updateRecommendation);
+            servicesCheckboxes.forEach(cb => {
+                cb.addEventListener('change', updateRecommendation);
+            });
+            
+            // Form validation
+            form.addEventListener('submit', function(event) {
+                let valid = true;
+                
+                // Clear previous errors
+                document.querySelectorAll('.form-error').forEach(el => {
+                    el.classList.remove('show');
+                });
+                
+                // Validate required fields
+                if (!document.getElementById('business-name').value.trim()) {
+                    document.getElementById('business-name-error').classList.add('show');
+                    valid = false;
+                }
+                
+                if (!revenueSelect.value) {
+                    document.getElementById('revenue-error').classList.add('show');
+                    valid = false;
+                }
+                
+                if (!document.getElementById('contact-name').value.trim()) {
+                    document.getElementById('name-error').classList.add('show');
+                    valid = false;
+                }
+                
+                const email = document.getElementById('email').value;
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!email || !emailRegex.test(email)) {
+                    document.getElementById('email-error').classList.add('show');
+                    valid = false;
+                }
+                
+                if (!valid) {
+                    event.preventDefault();
+                    // Scroll to first error
+                    const firstError = document.querySelector('.form-error.show');
+                    if (firstError) {
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                } else {
+                    // Change button text to show submission in progress
+                    const submitBtn = document.getElementById('submit-btn');
+                    submitBtn.innerHTML = 'Sending...';
+                    submitBtn.disabled = true;
+                }
+            });
+            
+            // Initialize recommendation if revenue already selected
+            if (revenueSelect.value) {
+                updateRecommendation();
+            }
+        });
+    </script>
+    
+    <!-- Footer JavaScript -->
+    <script>
+      // ── Year in footer
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // ── Sticky header shadow
+      const header = document.getElementById('site-header');
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 20);
+      }, { passive: true });
+
+      // ── Mobile nav toggle
+      const navToggle = document.getElementById('navToggle');
+      const navLinks = document.getElementById('navLinks');
+      if (navToggle && navLinks) {
+        navToggle.addEventListener('click', () => {
+          const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+          navToggle.setAttribute('aria-expanded', !expanded);
+          navLinks.classList.toggle('visible');
+        });
+      }
+    </script>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="logo.png" alt="Golden Flow Accounting and Tax" class="logo-image" />
+          <span class="logo-text">Golden Flow <em>Accounting and Tax</em></span>
+        </a>
+        <p>Professional accounting and tax services for small businesses and individuals in Texas.</p>
+        <p class="footer-legal">Golden Flow LLC &mdash; All rights reserved &copy; <span id="year"></span></p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <div class="footer-nav-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="index.html#services">Tax Preparation</a></li>
+            <li><a href="index.html#services">Bookkeeping</a></li>
+            <li><a href="index.html#services">Payroll</a></li>
+            <li><a href="index.html#services">Outsourced Accounting</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="index.html#why-us">Why Golden Flow</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="onboarding.html">Contact</a></li>
+            <li><a href="onboarding.html">Free Consultation</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bar">
+      <div class="container">
+        <p>Golden Flow Accounting and Tax — Golden Flow LLC, registered in Texas.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
