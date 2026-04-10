@@ -5,7 +5,7 @@ Professional website for **Golden Flow Accounting & Tax** (Golden Flow LLC) — 
 ## Project Structure
 
 ```
-true-balance-accounting/
+golden-flow-accounting/
 ├── index.html   # Single-page website (all sections)
 ├── style.css    # Stylesheet
 └── README.md    # This file
@@ -15,21 +15,21 @@ true-balance-accounting/
 
 ### Option A — New repository (quickest)
 
-1. Create a new repository on GitHub (e.g., `true-balance-accounting`).
+1. Create a new repository on GitHub (e.g., `golden-flow-accounting`).
 2. Push the files:
    ```bash
    git init
    git add index.html style.css README.md
    git commit -m "Initial website"
    git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/true-balance-accounting.git
+   git remote add origin https://github.com/YOUR_USERNAME/golden-flow-accounting.git
    git push -u origin main
    ```
 3. In your repository, go to **Settings → Pages**.
 4. Under **Source**, select **Deploy from a branch**, choose `main`, folder `/` (root), and click **Save**.
 5. GitHub will publish your site at:
    ```
-   https://YOUR_USERNAME.github.io/true-balance-accounting/
+   https://YOUR_USERNAME.github.io/golden-flow-accounting/
    ```
 
 ### Option B — Custom domain (e.g., goldenflowaccountingtax.com)
