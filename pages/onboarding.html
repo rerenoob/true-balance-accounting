@@ -17,259 +17,556 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-        .onboarding-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        .onboarding-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .onboarding-header h1 {
-            color: #2E7D32;
-            margin-bottom: 10px;
-        }
-        .onboarding-subtitle {
-            color: #7f8c8d;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 20px;
-        }
-        .form-progress {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 40px;
-            position: relative;
-        }
-        .form-progress:before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: #e0e0e0;
-            z-index: 1;
-        }
-        .progress-step {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-        .step-circle {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: white;
-            border: 2px solid #e0e0e0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 10px;
-            font-weight: bold;
-            color: #7f8c8d;
-        }
-        .step-circle.active {
-            background: #2E7D32;
-            border-color: #2E7D32;
-            color: white;
-        }
-        .step-label {
-            font-size: 0.9rem;
-            color: #7f8c8d;
-        }
-        .step-label.active {
-            color: #2E7D32;
-            font-weight: 500;
-        }
-        .form-section {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border: 1px solid #e0e0e0;
-        }
-        .section-title {
-            color: #2E7D32;
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #f0f7f0;
-        }
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #2E7D32;
-            font-weight: 500;
-        }
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: all 0.3s;
-        }
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: #C9A84C;
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
-        }
-        .checkbox-group,
-        .radio-group {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .checkbox-group label,
-        .radio-group label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: normal;
-            color: #333;
-            cursor: pointer;
-        }
-        .checkbox-group input[type="checkbox"],
-        .radio-group input[type="radio"] {
-            width: auto;
-            margin: 0;
-        }
-        .recommendation-card {
-            background: #f0f7f0;
-            border-left: 4px solid #C9A84C;
-            padding: 25px;
-            border-radius: 0 8px 8px 0;
-            margin: 30px 0;
-            display: none;
-        }
-        .recommendation-card.show {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .recommendation-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        .recommendation-icon {
-            font-size: 1.5rem;
-        }
-        .package-badge {
-            display: inline-block;
-            background: #C9A84C;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        .package-features {
-            margin-top: 15px;
-            padding-left: 20px;
-        }
-        .package-features li {
-            margin-bottom: 8px;
-        }
-        .form-actions {
-            text-align: center;
-            margin-top: 40px;
-        }
-        .btn-submit {
-            background: #2E7D32;
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-        }
-        .btn-submit:hover {
-            background: #1B5E20;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
-        }
-        .form-note {
-            text-align: center;
-            color: #7f8c8d;
-            margin-top: 20px;
-            font-size: 0.9rem;
-        }
-        .required-note {
-            color: #d32f2f;
-            font-size: 0.9rem;
-            margin-top: 5px;
-        }
-        .form-error {
-            color: #d32f2f;
-            font-size: 0.9rem;
-            margin-top: 5px;
-            display: none;
-        }
-        .form-error.show {
-            display: block;
-        }
-        @media (max-width: 768px) {
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            .form-section {
-                padding: 20px;
-            }
-        }
-    .skip-link { position: absolute; top: -100%; left: 0; background: #2E7D32; color: #fff; padding: 12px 20px; font-weight: 600; z-index: 9999; text-decoration: none; border-radius: 0 0 6px 0; }
+    /* ── Skip link ── */
+    .skip-link {
+      position: absolute; top: -100%; left: 0;
+      background: #2E7D32; color: #fff;
+      padding: 12px 20px; font-weight: 600;
+      z-index: 9999; text-decoration: none;
+      border-radius: 0 0 6px 0;
+    }
     .skip-link:focus { top: 0; }
-    
-        .form-progress-simple {
-            max-width: 500px;
-            margin: 30px auto 40px;
-            text-align: center;
-        }
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-            color: var(--color-text-muted);
-        }
-        .progress-bar {
-            height: 6px;
-            background: var(--color-border);
-            border-radius: 3px;
-            overflow: hidden;
-        }
-        .progress-fill {
-            height: 100%;
-            background: var(--color-primary);
-            transition: width 0.3s ease;
-        }
-        .progress-count {
-            font-weight: 600;
-            color: var(--color-primary);
-        }
-        .progress-time {
-            font-style: italic;
-        }</style>
+
+    /* ── Layout ── */
+    .onboarding-container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    /* ── Header ── */
+    .onboarding-header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .onboarding-header h1 {
+      color: var(--color-primary);
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      margin-bottom: 12px;
+    }
+    .onboarding-subtitle {
+      color: var(--color-text-muted);
+      font-size: 1.05rem;
+      max-width: 580px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+
+    /* ── Trust badges ── */
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      background: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+    .trust-badge .badge-icon { font-size: 1rem; }
+
+    /* ── Progress bar ── */
+    .form-progress-simple {
+      max-width: 480px;
+      margin: 0 auto 36px;
+    }
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+    }
+    .progress-count {
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+    .progress-time { font-style: italic; }
+    .progress-bar {
+      height: 6px;
+      background: var(--color-border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--color-primary);
+      border-radius: 3px;
+      transition: width 0.4s ease;
+      width: 0%;
+    }
+
+    /* ── Form sections ── */
+    .form-section {
+      background: white;
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border: 1px solid var(--color-border);
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #f0f7f0;
+    }
+    .section-number {
+      width: 32px;
+      height: 32px;
+      background: var(--color-primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .section-title {
+      color: var(--color-primary);
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    /* ── Form fields ── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group:last-child { margin-bottom: 0; }
+
+    .form-group label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 7px;
+      color: #374151;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    .required-star {
+      color: #d32f2f;
+      font-size: 1rem;
+      line-height: 1;
+    }
+    .field-hint {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      font-weight: 400;
+      margin-left: 2px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--color-border);
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: var(--font-sans);
+      color: var(--color-text);
+      background: #fff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--color-accent);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+    }
+    .form-group input.valid,
+    .form-group select.valid {
+      border-color: #4CAF50;
+    }
+    .form-group input.invalid,
+    .form-group select.invalid {
+      border-color: #d32f2f;
+      box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+
+    /* ── Error messages ── */
+    .form-error {
+      display: none;
+      color: #c62828;
+      font-size: 0.825rem;
+      margin-top: 5px;
+      font-weight: 500;
+    }
+    .form-error.show { display: flex; align-items: center; gap: 4px; }
+    .form-error::before { content: "⚠"; font-size: 0.85rem; }
+
+    /* ── Service cards (checkboxes) ── */
+    .service-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .service-card {
+      position: relative;
+    }
+    .service-card input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      top: 0; left: 0;
+      cursor: pointer;
+      margin: 0;
+      z-index: 1;
+    }
+    .service-card-label {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 14px 16px 14px 44px;
+      border: 2px solid var(--color-border);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: #fff;
+      position: relative;
+      min-height: 72px;
+      justify-content: center;
+    }
+    .service-card-label::before {
+      content: "";
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--color-border);
+      border-radius: 5px;
+      background: #fff;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .service-card input:checked + .service-card-label {
+      border-color: var(--color-primary);
+      background: #f0f7f0;
+    }
+    .service-card input:checked + .service-card-label::before {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 10'%3E%3Cpath d='M1 5l3.5 3.5L11 1' stroke='white' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 12px 10px;
+    }
+    .service-card input:focus + .service-card-label {
+      outline: 3px solid rgba(201, 168, 76, 0.4);
+      outline-offset: 2px;
+    }
+    .service-card:hover .service-card-label {
+      border-color: var(--color-primary);
+      background: #f8fdf8;
+    }
+    .service-card-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #1C1C1C;
+      line-height: 1.3;
+    }
+    .service-card-desc {
+      font-size: 0.78rem;
+      color: var(--color-text-muted);
+      line-height: 1.4;
+    }
+
+    /* ── Radio cards (current system) ── */
+    .system-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+    .system-card {
+      position: relative;
+    }
+    .system-card input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      top: 0; left: 0;
+      cursor: pointer;
+      margin: 0;
+      z-index: 1;
+    }
+    .system-card-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border: 2px solid var(--color-border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: #fff;
+    }
+    .system-card-label::before {
+      content: "";
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--color-border);
+      border-radius: 50%;
+      background: #fff;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .system-card input:checked + .system-card-label {
+      border-color: var(--color-primary);
+      background: #f0f7f0;
+    }
+    .system-card input:checked + .system-card-label::before {
+      border-color: var(--color-primary);
+      background: var(--color-primary);
+      box-shadow: inset 0 0 0 3px #fff;
+    }
+    .system-card input:focus + .system-card-label {
+      outline: 3px solid rgba(201, 168, 76, 0.4);
+      outline-offset: 2px;
+    }
+    .system-card:hover .system-card-label {
+      border-color: var(--color-primary);
+      background: #f8fdf8;
+    }
+    .system-card-label span {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #1C1C1C;
+    }
+
+    /* ── Other services expand ── */
+    .expand-field {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+    }
+    .expand-field.open {
+      max-height: 200px;
+      opacity: 1;
+    }
+    .expand-field .form-group {
+      margin-top: 16px;
+      margin-bottom: 0;
+    }
+
+    /* ── Recommendation card ── */
+    .recommendation-card {
+      background: linear-gradient(135deg, #f0f7f0 0%, #fff 100%);
+      border: 2px solid var(--color-primary);
+      border-radius: 12px;
+      padding: 28px;
+      margin: 8px 0 24px;
+      display: none;
+    }
+    .recommendation-card.show {
+      display: block;
+      animation: slideDown 0.4s ease;
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .recommendation-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .recommendation-icon { font-size: 1.4rem; }
+    .recommendation-header h3 {
+      margin: 0;
+      color: var(--color-primary);
+      font-size: 1.1rem;
+    }
+    .package-badge {
+      display: inline-block;
+      background: var(--color-accent);
+      color: white;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-right: 8px;
+    }
+    .package-price {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+    .package-description {
+      margin: 10px 0 0;
+      color: #555;
+      font-size: 0.95rem;
+    }
+    .package-features {
+      margin: 14px 0 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .package-features li {
+      padding: 5px 0;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .package-features li::before {
+      content: "✓";
+      color: var(--color-primary);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .next-steps {
+      margin-top: 18px;
+      padding: 16px;
+      background: white;
+      border-radius: 8px;
+      border: 1px solid var(--color-border);
+    }
+    .next-steps strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--color-primary);
+    }
+    .next-steps ol {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .next-steps li {
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+      color: #444;
+    }
+    .rec-disclaimer {
+      margin-top: 14px;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--color-primary);
+    }
+
+    /* ── Submit area ── */
+    .form-actions {
+      text-align: center;
+      margin-top: 32px;
+    }
+    .btn-submit {
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      padding: 16px 44px;
+      font-size: 1.05rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.25s;
+      font-weight: 700;
+      font-family: var(--font-sans);
+      letter-spacing: 0.01em;
+      min-width: 240px;
+    }
+    .btn-submit:hover:not(:disabled) {
+      background: var(--color-primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(46, 125, 50, 0.3);
+    }
+    .btn-submit:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+    .btn-submit:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+    .btn-submit:focus-visible {
+      outline: 3px solid var(--color-accent);
+      outline-offset: 3px;
+    }
+
+    /* ── Form status ── */
+    #form-status {
+      display: none;
+      margin-top: 20px;
+      padding: 16px 20px;
+      border-radius: 8px;
+    }
+    #form-status p { margin: 0; font-weight: 500; }
+    #form-status.success {
+      background: #f0f7f0;
+      border: 1px solid #c8e6c9;
+    }
+    #form-status.success p { color: var(--color-primary); }
+    #form-status.error {
+      background: #fff5f5;
+      border: 1px solid #ffcdd2;
+    }
+    #form-status.error p { color: #c62828; }
+
+    /* ── Privacy note ── */
+    .form-note {
+      margin-top: 16px;
+      color: var(--color-text-muted);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    .form-note a { color: var(--color-primary); text-decoration: underline; }
+    .required-note {
+      margin-top: 8px;
+      color: #c62828;
+      font-size: 0.85rem;
+    }
+
+    /* ── Bottom trust strip ── */
+    .submit-trust {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin: 20px 0 0;
+    }
+    .submit-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.82rem;
+      color: var(--color-text-muted);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .form-section { padding: 20px 16px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .service-cards { grid-template-columns: 1fr; }
+      .system-cards { grid-template-columns: 1fr 1fr; }
+      .trust-badges { gap: 10px; }
+      .btn-submit { width: 100%; }
+    }
+    @media (max-width: 400px) {
+      .system-cards { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -289,623 +586,428 @@
 
   <main id="main-content">
     <div class="onboarding-container">
-        <div class="onboarding-header">
-            <h1>Get Started with Golden Flow</h1>
-            <p class="onboarding-subtitle">Complete this form to get a personalized service recommendation and free consultation. We'll contact you within 24 hours.</p>
-            
-            <div class="form-progress-simple">
-                <div class="progress-info">
-                    <span class="progress-count">4 sections</span>
-                    <span class="progress-time">~5 minutes to complete</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 25%"></div>
-                </div>
-            </div>
+
+      <!-- Header -->
+      <div class="onboarding-header">
+        <h1>Get Started with Golden Flow</h1>
+        <p class="onboarding-subtitle">Complete this short form and we'll send you a personalized service recommendation and schedule your <strong>free 30-minute consultation</strong>.</p>
+
+        <div class="trust-badges" role="list" aria-label="Trust indicators">
+          <div class="trust-badge" role="listitem"><span class="badge-icon">🔒</span> Secure & confidential</div>
+          <div class="trust-badge" role="listitem"><span class="badge-icon">⚡</span> Response within 24 hrs</div>
+          <div class="trust-badge" role="listitem"><span class="badge-icon">☎️</span> No obligation</div>
         </div>
 
-        <!-- Smart Onboarding Form -->
-        <form id="goldenflow-onboarding" action="https://formspree.io/f/xqegoqzz" method="POST">
-            <!-- Hidden fields for Formspree -->
-            <input type="hidden" name="_subject" value="New Golden Flow Onboarding Submission">
-            <input type="hidden" name="_replyto" value="" id="reply-to-email">
-            <input type="hidden" name="_cc" value="onboard@goldenflowaccountingtax.com">
-            
-            <!-- Step 1: Business Information -->
-            <div class="form-section">
-                <h2 class="section-title">About Your Business</h2>
-                
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="business-name">Business Name *</label>
-                        <input type="text" id="business-name" name="business-name" required>
-                        <div class="form-error" id="business-name-error">Please enter your business name</div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="business-type">Business Type</label>
-                        <select id="business-type" name="business-type">
-                            <option value="">Select type...</option>
-                            <option value="sole-proprietor">Sole Proprietor</option>
-                            <option value="llc">LLC</option>
-                            <option value="corporation">Corporation (S-Corp/C-Corp)</option>
-                            <option value="partnership">Partnership</option>
-                            <option value="nonprofit">Nonprofit</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="industry">Industry</label>
-                        <select id="industry" name="industry">
-                            <option value="">Select industry...</option>
-                            <option value="professional-services">Professional Services</option>
-                            <option value="retail">Retail</option>
-                            <option value="restaurant">Restaurant/Food Service</option>
-                            <option value="construction">Construction</option>
-                            <option value="technology">Technology</option>
-                            <option value="healthcare">Healthcare</option>
-                            <option value="consulting">Consulting</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="annual-revenue">Annual Revenue *</label>
-                        <select id="annual-revenue" name="annual-revenue" required>
-                            <option value="">Select revenue range...</option>
-                            <option value="under-50k">Under $50,000</option>
-                            <option value="50k-100k">$50,000 - $100,000</option>
-                            <option value="100k-250k">$100,000 - $250,000</option>
-                            <option value="250k-500k">$250,000 - $500,000</option>
-                            <option value="500k-1m">$500,000 - $1,000,000</option>
-                            <option value="over-1m">Over $1,000,000</option>
-                        </select>
-                        <div class="form-error" id="revenue-error">Please select your annual revenue range</div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="employees">Number of Employees</label>
-                    <select id="employees" name="employees">
-                        <option value="">Select...</option>
-                        <option value="1">Just me</option>
-                        <option value="2-5">2-5 employees</option>
-                        <option value="6-10">6-10 employees</option>
-                        <option value="11-25">11-25 employees</option>
-                        <option value="26-50">26-50 employees</option>
-                        <option value="51+">51+ employees</option>
-                    </select>
-                </div>
+        <div class="form-progress-simple" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Form completion progress" id="form-progress-region">
+          <div class="progress-info">
+            <span class="progress-count" id="progress-label">0 of 4 required fields</span>
+            <span class="progress-time">~5 minutes to complete</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Smart Onboarding Form -->
+      <form id="goldenflow-onboarding" action="https://formspree.io/f/xqegoqzz" method="POST" novalidate>
+        <!-- Hidden fields for Formspree -->
+        <input type="hidden" name="_subject" value="New Golden Flow Onboarding Submission">
+        <input type="hidden" name="_replyto" value="" id="reply-to-email">
+        <input type="hidden" name="_cc" value="onboard@goldenflowaccountingtax.com">
+
+        <!-- ── Section 1: Business Information ── -->
+        <section class="form-section" aria-labelledby="section-1-title">
+          <div class="section-header">
+            <div class="section-number" aria-hidden="true">1</div>
+            <h2 class="section-title" id="section-1-title">About Your Business</h2>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="business-name">
+                Business Name <span class="required-star" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="business-name"
+                name="business-name"
+                autocomplete="organization"
+                required
+                aria-required="true"
+                aria-describedby="business-name-error"
+                placeholder="Your business name"
+              >
+              <div class="form-error" id="business-name-error" role="alert">Please enter your business name</div>
             </div>
-            
-            <!-- Step 2: Services Needed -->
-            <div class="form-section">
-                <h2 class="section-title">Services Needed</h2>
-                <p>Select all services you're interested in:</p>
-                
-                <div class="checkbox-group">
-                    <label>
-                        <input type="checkbox" name="services" value="bookkeeping">
-                        <strong>Bookkeeping & Monthly Reporting</strong> - Track income/expenses, generate financial statements
-                    </label>
-                    
-                    <label>
-                        <input type="checkbox" name="services" value="tax-prep">
-                        <strong>Tax Preparation & Filing</strong> - Federal, state, and local tax returns
-                    </label>
-                    
-                    <label>
-                        <input type="checkbox" name="services" value="payroll">
-                        <strong>Payroll Processing</strong> - Employee payments, tax withholdings, filings
-                    </label>
-                    
-                    <label>
-                        <input type="checkbox" name="services" value="sales-tax">
-                        <strong>Sales Tax Filing</strong> - Texas sales tax collection and remittance
-                    </label>
-                    
-                    <label>
-                        <input type="checkbox" name="services" value="entity-formation">
-                        <strong>Business Entity Formation</strong> - LLC setup, EIN registration, operating agreements
-                    </label>
-                    
-                    <label>
-                        <input type="checkbox" name="services" value="irs-notice">
-                        <strong>IRS Notice Response</strong> - Handle IRS letters and compliance issues
-                    </label>
-                    
-                    <label>
-                        <input type="checkbox" name="services" value="financial-planning">
-                        <strong>Financial Planning & Strategy</strong> - Cash flow analysis, growth planning
-                    </label>
-                    
-                    <label>
-                        <input type="checkbox" name="services" value="other" id="other-services-checkbox">
-                        <strong>Other Services</strong> - Specify below
-                    </label>
-                </div>
-                
-                <!-- Other Services Text Input (hidden by default) -->
-                <div class="form-group" id="other-services-container" style="display: none; margin-top: 20px;">
-                    <label for="other-services-text">Please specify other services you need:</label>
-                    <textarea id="other-services-text" name="other-services-text" rows="3" placeholder="e.g., Audit support, international tax, specific industry expertise..."></textarea>
-                    <p class="form-note" style="text-align: left; margin-top: 5px;">Describe any other accounting or tax services not listed above.</p>
-                </div>
+
+            <div class="form-group">
+              <label for="business-type">Business Structure</label>
+              <select id="business-type" name="business-type" aria-describedby="business-type-hint">
+                <option value="">Select type...</option>
+                <option value="sole-proprietor">Sole Proprietor</option>
+                <option value="llc">LLC (Single Member)</option>
+                <option value="llc-multi">LLC (Multi-Member)</option>
+                <option value="s-corp">S-Corporation</option>
+                <option value="c-corp">C-Corporation</option>
+                <option value="partnership">Partnership</option>
+                <option value="nonprofit">Nonprofit</option>
+                <option value="not-sure">Not sure yet</option>
+              </select>
+              <div id="business-type-hint" class="field-hint" style="display:block; margin-top:4px; font-size:0.8rem; color:var(--color-text-muted);">
+                Not sure? We can help determine the best structure for you.
+              </div>
             </div>
-            
-            <!-- Step 3: Current System -->
-            <div class="form-section">
-                <h2 class="section-title">Current Accounting System</h2>
-                
-                <div class="radio-group">
-                    <label>
-                        <input type="radio" name="current-system" value="quickbooks">
-                        QuickBooks (Online or Desktop)
-                    </label>
-                    
-                    <label>
-                        <input type="radio" name="current-system" value="xero">
-                        Xero
-                    </label>
-                    
-                    <label>
-                        <input type="radio" name="current-system" value="freshbooks">
-                        FreshBooks
-                    </label>
-                    
-                    <label>
-                        <input type="radio" name="current-system" value="excel">
-                        Excel/Google Sheets
-                    </label>
-                    
-                    <label>
-                        <input type="radio" name="current-system" value="manual">
-                        Manual (paper receipts, spreadsheets)
-                    </label>
-                    
-                    <label>
-                        <input type="radio" name="current-system" value="other-software">
-                        Other accounting software
-                    </label>
-                    
-                    <label>
-                        <input type="radio" name="current-system" value="none">
-                        No system yet - just starting out
-                    </label>
-                </div>
-                
-                <div class="form-group" style="margin-top: 20px;">
-                    <label for="pain-points">What are your biggest accounting challenges or pain points?</label>
-                    <textarea id="pain-points" name="pain-points" rows="3" placeholder="e.g., Too much time on bookkeeping, confusing tax rules, payroll errors..."></textarea>
-                </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="industry">Industry</label>
+              <select id="industry" name="industry">
+                <option value="">Select industry...</option>
+                <option value="professional-services">Professional Services</option>
+                <option value="retail">Retail</option>
+                <option value="restaurant">Restaurant / Food Service</option>
+                <option value="construction">Construction / Trades</option>
+                <option value="technology">Technology</option>
+                <option value="healthcare">Healthcare / Medical</option>
+                <option value="real-estate">Real Estate</option>
+                <option value="consulting">Consulting</option>
+                <option value="e-commerce">E-Commerce</option>
+                <option value="other">Other</option>
+              </select>
             </div>
-            
-            <!-- Step 4: Contact Information -->
-            <div class="form-section">
-                <h2 class="section-title">Contact Information</h2>
-                
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="contact-name">Your Name *</label>
-                        <input type="text" id="contact-name" name="contact-name" autocomplete="name" required>
-                        <div class="form-error" id="name-error">Please enter your name</div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="title">Your Title/Role</label>
-                        <input type="text" id="title" name="title" placeholder="e.g., Owner, CEO, Manager">
-                    </div>
-                </div>
-                
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" autocomplete="email" required>
-                        <div class="form-error" id="email-error">Please enter a valid email address</div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" autocomplete="tel">
-                    </div>
-                </div>
-                
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="best-time">Best Time to Contact</label>
-                        <select id="best-time" name="best-time">
-                            <option value="">Any time is fine</option>
-                            <option value="morning">Morning (9 AM - 12 PM)</option>
-                            <option value="afternoon">Afternoon (1 PM - 5 PM)</option>
-                            <option value="evening">Evening (after 5 PM)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="timeline">When do you need services to start?</label>
-                        <select id="timeline" name="timeline">
-                            <option value="">Select timeline...</option>
-                            <option value="immediately">Immediately (within 2 weeks)</option>
-                            <option value="1-month">Within 1 month</option>
-                            <option value="1-3-months">1-3 months</option>
-                            <option value="3-6-months">3-6 months</option>
-                            <option value="just-researching">Just researching options</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="how-heard">How did you hear about us?</label>
-                    <select id="how-heard" name="how-heard">
-                        <option value="">Select...</option>
-                        <option value="google">Google Search</option>
-                        <option value="referral">Referral from friend/client</option>
-                        <option value="social-media">Social Media</option>
-                        <option value="event">Business Event/Networking</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
+
+            <div class="form-group">
+              <label for="annual-revenue">
+                Annual Revenue <span class="required-star" aria-hidden="true">*</span>
+                <span class="field-hint">(helps us match you to the right package)</span>
+              </label>
+              <select
+                id="annual-revenue"
+                name="annual-revenue"
+                required
+                aria-required="true"
+                aria-describedby="revenue-error"
+              >
+                <option value="">Select revenue range...</option>
+                <option value="under-50k">Under $50,000</option>
+                <option value="50k-100k">$50,000 – $100,000</option>
+                <option value="100k-250k">$100,000 – $250,000</option>
+                <option value="250k-500k">$250,000 – $500,000</option>
+                <option value="500k-1m">$500,000 – $1,000,000</option>
+                <option value="over-1m">Over $1,000,000</option>
+              </select>
+              <div class="form-error" id="revenue-error" role="alert">Please select your annual revenue range</div>
             </div>
-            
-            <!-- Smart Recommendation Display -->
-            <div class="recommendation-card" id="recommendation-section">
-                <div class="recommendation-header">
-                    <span class="recommendation-icon">🎯</span>
-                    <h3 style="margin: 0;">Our Personalized Recommendation</h3>
-                </div>
-                
-                <p id="recommendation-text">Based on your business information, we recommend:</p>
-                
-                <div id="package-details">
-                    <!-- Filled by JavaScript -->
-                </div>
-                
-                <p style="margin-top: 15px; font-style: italic; color: #2E7D32;">
-                    This recommendation will be included in our consultation. We'll review all details and provide a customized proposal.
-                </p>
+          </div>
+
+          <div class="form-group">
+            <label for="employees">Number of Employees</label>
+            <select id="employees" name="employees">
+              <option value="">Select...</option>
+              <option value="1">Just me (owner only)</option>
+              <option value="2-5">2–5 employees</option>
+              <option value="6-10">6–10 employees</option>
+              <option value="11-25">11–25 employees</option>
+              <option value="26-50">26–50 employees</option>
+              <option value="51+">51+ employees</option>
+            </select>
+          </div>
+        </section>
+
+        <!-- ── Section 2: Services Needed ── -->
+        <section class="form-section" aria-labelledby="section-2-title">
+          <div class="section-header">
+            <div class="section-number" aria-hidden="true">2</div>
+            <h2 class="section-title" id="section-2-title">Services You're Interested In</h2>
+          </div>
+          <p style="margin: 0 0 20px; color: var(--color-text-muted); font-size:0.95rem;">Select all that apply — you can always add or remove services later.</p>
+
+          <fieldset style="border:none; padding:0; margin:0;">
+            <legend class="visually-hidden">Services needed — check all that apply</legend>
+            <div class="service-cards" role="group">
+
+              <div class="service-card">
+                <input type="checkbox" name="services" value="bookkeeping" id="svc-bookkeeping" aria-describedby="svc-bookkeeping-desc">
+                <label class="service-card-label" for="svc-bookkeeping">
+                  <span class="service-card-name">📒 Bookkeeping</span>
+                  <span class="service-card-desc" id="svc-bookkeeping-desc">Monthly tracking, reconciliation &amp; financial statements</span>
+                </label>
+              </div>
+
+              <div class="service-card">
+                <input type="checkbox" name="services" value="tax-prep" id="svc-tax">
+                <label class="service-card-label" for="svc-tax">
+                  <span class="service-card-name">📋 Tax Preparation</span>
+                  <span class="service-card-desc">Federal, state &amp; local returns filed accurately</span>
+                </label>
+              </div>
+
+              <div class="service-card">
+                <input type="checkbox" name="services" value="payroll" id="svc-payroll">
+                <label class="service-card-label" for="svc-payroll">
+                  <span class="service-card-name">💰 Payroll Processing</span>
+                  <span class="service-card-desc">Employee payments, withholdings &amp; filings</span>
+                </label>
+              </div>
+
+              <div class="service-card">
+                <input type="checkbox" name="services" value="sales-tax" id="svc-sales-tax">
+                <label class="service-card-label" for="svc-sales-tax">
+                  <span class="service-card-name">🏷️ Sales Tax Filing</span>
+                  <span class="service-card-desc">Texas sales tax collection &amp; remittance</span>
+                </label>
+              </div>
+
+              <div class="service-card">
+                <input type="checkbox" name="services" value="entity-formation" id="svc-entity">
+                <label class="service-card-label" for="svc-entity">
+                  <span class="service-card-name">🏢 Entity Formation</span>
+                  <span class="service-card-desc">LLC setup, EIN registration, operating agreements</span>
+                </label>
+              </div>
+
+              <div class="service-card">
+                <input type="checkbox" name="services" value="irs-notice" id="svc-irs">
+                <label class="service-card-label" for="svc-irs">
+                  <span class="service-card-name">⚖️ IRS Notice Response</span>
+                  <span class="service-card-desc">Handle IRS letters &amp; compliance issues</span>
+                </label>
+              </div>
+
+              <div class="service-card">
+                <input type="checkbox" name="services" value="financial-planning" id="svc-planning">
+                <label class="service-card-label" for="svc-planning">
+                  <span class="service-card-name">📈 Financial Planning</span>
+                  <span class="service-card-desc">Cash flow analysis &amp; growth strategy</span>
+                </label>
+              </div>
+
+              <div class="service-card">
+                <input type="checkbox" name="services" value="other" id="other-services-checkbox">
+                <label class="service-card-label" for="other-services-checkbox">
+                  <span class="service-card-name">➕ Other Services</span>
+                  <span class="service-card-desc">Specify your unique needs below</span>
+                </label>
+              </div>
+
             </div>
-            
-            <!-- Form Actions -->
-            <div class="form-actions">
-                <button type="submit" class="btn-submit" id="submit-btn">
-                    Get Your Free Consultation
-                </button>
-                
-                <!-- Form status messages (hidden by default) -->
-                <div id="form-status" role="alert" aria-live="assertive" style="display: none; margin-top: 20px; padding: 15px; border-radius: 8px; background: #f0f7f0; border: 1px solid #c8e6c9;">
-                    <p id="status-message" style="margin: 0; color: #2E7D32; font-weight: 500;"></p>
-                </div>
-                
-                <p class="form-note">
-                    By submitting this form, you agree to be contacted by Golden Flow Accounting and Tax.
-                    We respect your privacy and will never share your information.
-                    View our <a href="privacy-policy.html" style="color: #2E7D32; text-decoration: underline;">Privacy Policy</a>.
-                </p>
-                
-                <p class="required-note">* Required fields</p>
+          </fieldset>
+
+          <!-- Other services expand -->
+          <div class="expand-field" id="other-services-container">
+            <div class="form-group">
+              <label for="other-services-text">Describe the services you need:</label>
+              <textarea
+                id="other-services-text"
+                name="other-services-text"
+                rows="3"
+                placeholder="e.g., Audit support, international tax, specific industry expertise..."
+              ></textarea>
             </div>
-        </form>
-    </div>
+          </div>
+        </section>
+
+        <!-- ── Section 3: Current Accounting System ── -->
+        <section class="form-section" aria-labelledby="section-3-title">
+          <div class="section-header">
+            <div class="section-number" aria-hidden="true">3</div>
+            <h2 class="section-title" id="section-3-title">Current Accounting Setup</h2>
+          </div>
+          <p style="margin: 0 0 20px; color: var(--color-text-muted); font-size:0.95rem;">What software or system are you currently using?</p>
+
+          <fieldset style="border:none; padding:0; margin:0 0 20px;">
+            <legend class="visually-hidden">Current accounting system — select one</legend>
+            <div class="system-cards" role="radiogroup" aria-label="Current accounting system">
+
+              <div class="system-card">
+                <input type="radio" name="current-system" value="quickbooks" id="sys-qb">
+                <label class="system-card-label" for="sys-qb"><span>QuickBooks</span></label>
+              </div>
+
+              <div class="system-card">
+                <input type="radio" name="current-system" value="xero" id="sys-xero">
+                <label class="system-card-label" for="sys-xero"><span>Xero</span></label>
+              </div>
+
+              <div class="system-card">
+                <input type="radio" name="current-system" value="freshbooks" id="sys-freshbooks">
+                <label class="system-card-label" for="sys-freshbooks"><span>FreshBooks</span></label>
+              </div>
+
+              <div class="system-card">
+                <input type="radio" name="current-system" value="excel" id="sys-excel">
+                <label class="system-card-label" for="sys-excel"><span>Excel / Google Sheets</span></label>
+              </div>
+
+              <div class="system-card">
+                <input type="radio" name="current-system" value="manual" id="sys-manual">
+                <label class="system-card-label" for="sys-manual"><span>Paper / Manual</span></label>
+              </div>
+
+              <div class="system-card">
+                <input type="radio" name="current-system" value="other-software" id="sys-other">
+                <label class="system-card-label" for="sys-other"><span>Other Software</span></label>
+              </div>
+
+              <div class="system-card">
+                <input type="radio" name="current-system" value="none" id="sys-none">
+                <label class="system-card-label" for="sys-none"><span>Nothing yet — just starting</span></label>
+              </div>
+
+            </div>
+          </fieldset>
+
+          <div class="form-group">
+            <label for="pain-points">What are your biggest accounting challenges? <span class="field-hint">(optional)</span></label>
+            <textarea
+              id="pain-points"
+              name="pain-points"
+              rows="3"
+              placeholder="e.g., Too much time on bookkeeping, confusing tax rules, payroll errors, not knowing if I'm profitable..."
+            ></textarea>
+          </div>
+        </section>
+
+        <!-- ── Section 4: Contact Information ── -->
+        <section class="form-section" aria-labelledby="section-4-title">
+          <div class="section-header">
+            <div class="section-number" aria-hidden="true">4</div>
+            <h2 class="section-title" id="section-4-title">How to Reach You</h2>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="contact-name">
+                Your Name <span class="required-star" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="contact-name"
+                name="contact-name"
+                autocomplete="name"
+                required
+                aria-required="true"
+                aria-describedby="name-error"
+                placeholder="First and last name"
+              >
+              <div class="form-error" id="name-error" role="alert">Please enter your name</div>
+            </div>
+
+            <div class="form-group">
+              <label for="title">Your Title / Role <span class="field-hint">(optional)</span></label>
+              <input type="text" id="title" name="title" placeholder="e.g., Owner, CEO, Office Manager" autocomplete="organization-title">
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="email">
+                Email Address <span class="required-star" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                autocomplete="email"
+                required
+                aria-required="true"
+                aria-describedby="email-error"
+                placeholder="you@yourbusiness.com"
+              >
+              <div class="form-error" id="email-error" role="alert">Please enter a valid email address</div>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number <span class="field-hint">(optional)</span></label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                autocomplete="tel"
+                placeholder="(555) 123-4567"
+                inputmode="numeric"
+              >
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="best-time">Best Time to Contact</label>
+              <select id="best-time" name="best-time">
+                <option value="">Any time works</option>
+                <option value="morning">Morning (9 AM – 12 PM CT)</option>
+                <option value="afternoon">Afternoon (1 PM – 5 PM CT)</option>
+                <option value="evening">Evening (after 5 PM CT)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="timeline">When do you need to start?</label>
+              <select id="timeline" name="timeline">
+                <option value="">Select timeline...</option>
+                <option value="immediately">ASAP (within 2 weeks)</option>
+                <option value="1-month">Within 1 month</option>
+                <option value="1-3-months">1–3 months</option>
+                <option value="3-6-months">3–6 months</option>
+                <option value="just-researching">Just researching for now</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="how-heard">How did you hear about us?</label>
+            <select id="how-heard" name="how-heard">
+              <option value="">Select...</option>
+              <option value="google">Google Search</option>
+              <option value="referral">Referral from friend or colleague</option>
+              <option value="social-media">Social Media</option>
+              <option value="event">Business Event / Networking</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </section>
+
+        <!-- ── Smart Recommendation ── -->
+        <div class="recommendation-card" id="recommendation-section" aria-live="polite" aria-label="Personalized recommendation">
+          <div class="recommendation-header">
+            <span class="recommendation-icon" aria-hidden="true">🎯</span>
+            <h3>Your Personalized Recommendation</h3>
+          </div>
+          <p id="recommendation-text" style="margin:0 0 14px; color:#444;"></p>
+          <div id="package-details"><!-- Filled by JS --></div>
+          <p class="rec-disclaimer">This recommendation will be reviewed during your free consultation — we'll tailor it to your exact situation.</p>
+        </div>
+
+        <!-- ── Submit ── -->
+        <div class="form-actions">
+          <button type="submit" class="btn-submit" id="submit-btn">
+            Get My Free Consultation
+          </button>
+
+          <div id="form-status" role="alert" aria-live="assertive">
+            <p id="status-message"></p>
+          </div>
+
+          <div class="submit-trust" aria-label="Trust indicators">
+            <div class="submit-trust-item">🔒 SSL encrypted</div>
+            <div class="submit-trust-item">🚫 No spam, ever</div>
+            <div class="submit-trust-item">📞 We call you — no pressure</div>
+          </div>
+
+          <p class="form-note">
+            By submitting this form you agree to be contacted by Golden Flow Accounting and Tax.
+            We respect your privacy and never share your information.
+            View our <a href="privacy-policy.html">Privacy Policy</a>.
+          </p>
+          <p class="required-note"><span aria-hidden="true">*</span> Required fields</p>
+        </div>
+      </form>
+    </div><!-- /.onboarding-container -->
   </main>
 
-    <!-- JavaScript for Smart Recommendations -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Form elements
-            const form = document.getElementById('goldenflow-onboarding');
-            const revenueSelect = document.getElementById('annual-revenue');
-            const servicesCheckboxes = document.querySelectorAll('input[name="services"]');
-            const recommendationSection = document.getElementById('recommendation-section');
-            const recommendationText = document.getElementById('recommendation-text');
-            const packageDetails = document.getElementById('package-details');
-            const emailInput = document.getElementById('email');
-            const replyToHidden = document.getElementById('reply-to-email');
-            
-            // Other services elements
-            const otherServicesCheckbox = document.getElementById('other-services-checkbox');
-            const otherServicesContainer = document.getElementById('other-services-container');
-            const otherServicesText = document.getElementById('other-services-text');
-            
-            // Update hidden reply-to field when email changes (both input and change cover autofill)
-            function syncReplyTo() { replyToHidden.value = emailInput.value; }
-            emailInput.addEventListener('input', syncReplyTo);
-            emailInput.addEventListener('change', syncReplyTo);
-            
-            // Show/hide Other services text field
-            if (otherServicesCheckbox && otherServicesContainer) {
-                otherServicesCheckbox.addEventListener('change', function() {
-                    if (this.checked) {
-                        otherServicesContainer.style.display = 'block';
-                        // Optional: Smooth scroll to show the text field (commented out)
-                        // setTimeout(() => {
-                        //     otherServicesContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                        // }, 100);
-                    } else {
-                        otherServicesContainer.style.display = 'none';
-                        // Clear the text field when unchecked
-                        if (otherServicesText) {
-                            otherServicesText.value = '';
-                        }
-                    }
-                });
-                
-                // Initialize based on current state
-                if (otherServicesCheckbox.checked) {
-                    otherServicesContainer.style.display = 'block';
-                }
-            }
-            
-            // Smart recommendation logic
-            function updateRecommendation() {
-                const revenue = revenueSelect.value;
-                const selectedServices = Array.from(servicesCheckboxes)
-                    .filter(cb => cb.checked)
-                    .map(cb => cb.value);
-                
-                // Only show recommendation if revenue is selected
-                if (!revenue) {
-                    recommendationSection.classList.remove('show');
-                    return;
-                }
-                
-                // Determine package based on revenue and business complexity
-                let packageType, packageName, price, features, description;
-                
-                // Get business type to assess complexity
-                const businessType = document.querySelector('input[name="businessType"]:checked')?.value || '';
-                const hasEmployees = document.getElementById('hasEmployees')?.checked || false;
-                const hasPayroll = document.getElementById('hasPayroll')?.checked || false;
-                
-                // Assess business complexity
-                const isComplexBusiness = hasEmployees || hasPayroll || 
-                                         businessType === 'partnership' || 
-                                         businessType === 'corporation' ||
-                                         businessType === 'llc-multi-member';
-                
-                // Package recommendation logic with overlap at boundaries
-                if (revenue === 'under-50k') {
-                    // Always Starter for very small businesses
-                    packageType = 'starter';
-                    packageName = 'Starter Package';
-                    price = '$199/month';
-                    description = 'Perfect for small businesses getting started with professional accounting.';
-                // Add explanation for complex business recommendation
-                if (revenue === '50k-100k' && isComplexBusiness) {
-                    description += ' Recommended due to business complexity (employees, payroll, or entity type).';
-                }
-                    features = [
-                        'Monthly bookkeeping & reconciliation',
-                        'Basic financial statements (P&L, Balance Sheet)',
-                        'Quarterly tax estimates',
-                        'Unlimited email support',
-                        'Annual tax preparation (1040 + Schedule C)'
-                    ];
-                } 
-                else if (revenue === '50k-100k') {
-                    // $50k-100k: Starter for simple businesses, Business for complex ones
-                    if (isComplexBusiness) {
-                        packageType = 'business';
-                        packageName = 'Business Package';
-                        price = '$499/month';
-                        description = 'Comprehensive accounting for growing businesses with complex needs.';
-                        features = [
-                            'Everything in Starter, plus:',
-                        'Monthly financial reports with insights',
-                        'Cash flow forecasting',
-                        'Sales tax filing (Texas)',
-                        'Payroll processing available',
-                        'Quarterly business reviews',
-                        'Annual tax planning session'
-                    ];
-                } 
-                else { // 500k-1m or over-1m
-                    packageType = 'growth';
-                    packageName = 'Growth Package';
-                    price = '$999/month';
-                    description = 'Strategic accounting partnership for established businesses.';
-                    features = [
-                        'Everything in Business, plus:',
-                        'Monthly CFO-level insights',
-                        'Strategic financial planning',
-                        'Custom KPI dashboards',
-                        'Priority support & dedicated account manager',
-                        'Tax optimization strategies',
-                        'Business entity advisory'
-                    ];
-                }
-                
-                // Add service-specific notes
-                if (selectedServices.includes('payroll')) {
-                    features.push('✓ Payroll processing included');
-                }
-                
-                if (selectedServices.includes('entity-formation')) {
-                    features.push('✓ Business entity formation service available');
-                }
-                
-                if (selectedServices.includes('irs-notice')) {
-                    features.push('✓ IRS notice response support included');
-                }
-                
-                // Add note for other services
-                if (selectedServices.includes('other') && otherServicesText && otherServicesText.value.trim()) {
-                    features.push('✓ Custom services: We\'ll discuss your specific needs');
-                }
-                
-                // Update recommendation display
-                recommendationText.textContent = `Based on your business size and needs, we recommend our ${packageName}.`;
-                
-                packageDetails.innerHTML = `
-                    <div style="margin: 20px 0;">
-                        <div class="package-badge">${packageName}</div>
-                        <strong style="color: #2E7D32; font-size: 1.2rem;">${price}</strong>
-                        <p style="margin: 10px 0; color: #555;">${description}</p>
-                        
-                        <div style="margin-top: 15px;">
-                            <strong>Includes:</strong>
-                            <ul class="package-features">
-                                ${features.map(feature => `<li>${feature}</li>`).join('')}
-                            </ul>
-                        </div>
-                        
-                        <div style="margin-top: 20px; padding: 15px; background: white; border-radius: 5px; border: 1px solid #e0e0e0;">
-                            <strong>Next Steps:</strong>
-                            <ol style="margin: 10px 0 0 20px;">
-                                <li>We'll schedule your free consultation within 24 hours</li>
-                                <li>Review your specific needs and this recommendation</li>
-                                <li>Provide customized proposal with exact pricing</li>
-                                <li>Onboard smoothly with our team</li>
-                            </ol>
-                        </div>
-                    </div>
-                `;
-                
-                // Show recommendation
-                recommendationSection.classList.add('show');
-                
-                // Optional: Scroll to recommendation smoothly (commented out)
-                // recommendationSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
-            
-            // Add event listeners
-            revenueSelect.addEventListener('change', updateRecommendation);
-            servicesCheckboxes.forEach(cb => {
-                cb.addEventListener('change', updateRecommendation);
-            });
-            
-            // Helper: show error banner and scroll to it
-            function showFormError(message) {
-                const statusDiv = document.getElementById('form-status');
-                const statusMsg = document.getElementById('status-message');
-                statusMsg.textContent = message;
-                statusDiv.style.display = 'block';
-                statusDiv.style.background = '#fff5f5';
-                statusDiv.style.borderColor = '#ffcdd2';
-                statusMsg.style.color = '#c62828';
-                statusDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
-
-            // Guard against double-submission (Enter key can fire submit even with button disabled)
-            let isSubmitting = false;
-
-            // Form validation and AJAX submission
-            form.addEventListener('submit', async function(event) {
-                event.preventDefault(); // Prevent default form submission
-
-                if (isSubmitting) return;
-
-                let valid = true;
-
-                // Clear previous errors (field errors + status banner)
-                document.querySelectorAll('.form-error').forEach(el => {
-                    el.classList.remove('show');
-                });
-                const statusDiv = document.getElementById('form-status');
-                statusDiv.style.display = 'none';
-                
-                // Validate required fields
-                if (!document.getElementById('business-name').value.trim()) {
-                    document.getElementById('business-name-error').classList.add('show');
-                    valid = false;
-                }
-                
-                if (!revenueSelect.value) {
-                    document.getElementById('revenue-error').classList.add('show');
-                    valid = false;
-                }
-                
-                if (!document.getElementById('contact-name').value.trim()) {
-                    document.getElementById('name-error').classList.add('show');
-                    valid = false;
-                }
-                
-                const email = document.getElementById('email').value;
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!email || !emailRegex.test(email)) {
-                    document.getElementById('email-error').classList.add('show');
-                    valid = false;
-                }
-                
-                if (!valid) {
-                    const firstError = document.querySelector('.form-error.show');
-                    if (firstError) {
-                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                    return;
-                }
-                
-                // Change button text to show submission in progress
-                isSubmitting = true;
-                const submitBtn = document.getElementById('submit-btn');
-                const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = 'Sending...';
-                submitBtn.disabled = true;
-
-                try {
-                    // Collect form data
-                    const formData = new FormData(form);
-                    
-                    // Submit to Formspree via AJAX
-                    const response = await fetch(form.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    });
-                    
-                    if (response.ok) {
-                        // Success - redirect to thank you page
-                        window.location.href = 'thank-you.html';
-                    } else {
-                        // Formspree returned an error
-                        try {
-                            const errorData = await response.json();
-                            console.error('Formspree error:', errorData);
-                        } catch (e) {
-                            console.error('Formspree error (non-JSON response):', response.status);
-                        }
-                        showFormError('Sorry, there was an error submitting the form. Please try again or contact us directly at info@goldenflowaccountingtax.com');
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                        isSubmitting = false;
-                    }
-                } catch (error) {
-                    // Network error or other issue
-                    console.error('Submission error:', error);
-                    showFormError('Network error. Please check your connection and try again.');
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                    isSubmitting = false;
-                }
-            });
-            
-            // Initialize recommendation if revenue already selected
-            if (revenueSelect.value) {
-                updateRecommendation();
-            }
-        });
-    </script>
-    
-    <!-- Footer JavaScript -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // ── Year in footer
-        const yearEl = document.getElementById('year');
-        if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-        // ── Sticky header shadow
-        const header = document.getElementById('site-header');
-        window.addEventListener('scroll', () => {
-          header.classList.toggle('scrolled', window.scrollY > 20);
-        }, { passive: true });
-
-
-      });
-    </script>
-
+  <!-- ===== FOOTER ===== -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
@@ -942,5 +1044,394 @@
       </div>
     </div>
   </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      // ── Element refs ──────────────────────────────────────────
+      const form             = document.getElementById('goldenflow-onboarding');
+      const revenueSelect    = document.getElementById('annual-revenue');
+      const businessTypeSelect = document.getElementById('business-type');
+      const employeesSelect  = document.getElementById('employees');
+      const servicesChecks   = form.querySelectorAll('input[name="services"]');
+      const recSection       = document.getElementById('recommendation-section');
+      const recText          = document.getElementById('recommendation-text');
+      const pkgDetails       = document.getElementById('package-details');
+      const emailInput       = document.getElementById('email');
+      const phoneInput       = document.getElementById('phone');
+      const replyToHidden    = document.getElementById('reply-to-email');
+      const otherCheckbox    = document.getElementById('other-services-checkbox');
+      const otherContainer   = document.getElementById('other-services-container');
+      const otherText        = document.getElementById('other-services-text');
+      const progressFill     = document.getElementById('progress-fill');
+      const progressLabel    = document.getElementById('progress-label');
+      const progressRegion   = document.getElementById('form-progress-region');
+      const submitBtn        = document.getElementById('submit-btn');
+
+      // Required fields for progress tracking
+      const requiredFields = [
+        document.getElementById('business-name'),
+        revenueSelect,
+        document.getElementById('contact-name'),
+        emailInput
+      ];
+
+      // ── Progress bar ─────────────────────────────────────────
+      function updateProgress() {
+        const filled = requiredFields.filter(f => f.value.trim()).length;
+        const total  = requiredFields.length;
+        const pct    = Math.round((filled / total) * 100);
+        progressFill.style.width = pct + '%';
+        progressLabel.textContent = filled + ' of ' + total + ' required fields';
+        progressRegion.setAttribute('aria-valuenow', pct);
+      }
+
+      requiredFields.forEach(f => {
+        f.addEventListener('input', updateProgress);
+        f.addEventListener('change', updateProgress);
+      });
+      updateProgress();
+
+      // ── Sync reply-to ─────────────────────────────────────────
+      function syncReplyTo() { replyToHidden.value = emailInput.value; }
+      emailInput.addEventListener('input', syncReplyTo);
+      emailInput.addEventListener('change', syncReplyTo);
+
+      // ── Phone formatting ──────────────────────────────────────
+      phoneInput.addEventListener('input', function () {
+        let digits = this.value.replace(/\D/g, '').substring(0, 10);
+        if (digits.length >= 7) {
+          this.value = '(' + digits.substring(0,3) + ') ' + digits.substring(3,6) + '-' + digits.substring(6);
+        } else if (digits.length >= 4) {
+          this.value = '(' + digits.substring(0,3) + ') ' + digits.substring(3);
+        } else if (digits.length > 0) {
+          this.value = '(' + digits;
+        }
+      });
+
+      // ── Other services expand ─────────────────────────────────
+      otherCheckbox.addEventListener('change', function () {
+        if (this.checked) {
+          otherContainer.classList.add('open');
+          // Defer focus so the animation has time to start
+          setTimeout(() => otherText.focus(), 50);
+        } else {
+          otherContainer.classList.remove('open');
+          otherText.value = '';
+        }
+      });
+
+      // ── Smart recommendation ──────────────────────────────────
+      function updateRecommendation() {
+        const revenue      = revenueSelect.value;
+        const bizType      = businessTypeSelect.value;
+        const empCount     = employeesSelect.value;
+        const selectedSvcs = Array.from(servicesChecks).filter(c => c.checked).map(c => c.value);
+
+        if (!revenue) {
+          recSection.classList.remove('show');
+          return;
+        }
+
+        // Assess complexity
+        const complexTypes  = ['llc-multi', 's-corp', 'c-corp', 'partnership'];
+        const hasEmployees  = empCount && empCount !== '1';
+        const wantsPayroll  = selectedSvcs.includes('payroll');
+        const isComplex     = complexTypes.includes(bizType) || hasEmployees || wantsPayroll;
+
+        // Determine package
+        let pkgName, pkgPrice, pkgDesc, pkgFeatures;
+
+        if (revenue === 'under-50k') {
+          pkgName  = 'Starter Package';
+          pkgPrice = '$199/month';
+          pkgDesc  = 'Perfect for solo owners and micro-businesses that need accurate books and stress-free tax filing.';
+          pkgFeatures = [
+            'Monthly bookkeeping & bank reconciliation',
+            'Basic financial statements (P&L, Balance Sheet)',
+            'Quarterly estimated tax calculations',
+            'Unlimited email support',
+            'Annual tax preparation (1040 + Schedule C or 1065)'
+          ];
+        } else if (revenue === '50k-100k' && !isComplex) {
+          pkgName  = 'Starter Package';
+          pkgPrice = '$199/month';
+          pkgDesc  = 'Solid foundation for your growing business — clean books, timely filings, and peace of mind.';
+          pkgFeatures = [
+            'Monthly bookkeeping & bank reconciliation',
+            'Basic financial statements (P&L, Balance Sheet)',
+            'Quarterly estimated tax calculations',
+            'Unlimited email support',
+            'Annual tax preparation'
+          ];
+        } else if (revenue === '50k-100k' || revenue === '100k-250k' || revenue === '250k-500k') {
+          pkgName  = 'Business Package';
+          pkgPrice = '$499/month';
+          pkgDesc  = 'Comprehensive accounting for growing businesses — deeper insights, proactive planning, and full compliance.';
+          pkgFeatures = [
+            'Everything in Starter, plus:',
+            'Monthly financial reports with cash flow insights',
+            'Sales tax filing (Texas)',
+            'Quarterly business review calls',
+            'Annual tax planning session',
+            'Payroll processing available as add-on'
+          ];
+        } else {
+          // 500k-1m or over-1m
+          pkgName  = 'Growth Package';
+          pkgPrice = '$999/month';
+          pkgDesc  = 'Strategic accounting partnership for established businesses that need CFO-level guidance.';
+          pkgFeatures = [
+            'Everything in Business, plus:',
+            'Monthly CFO-level financial insights',
+            'Custom KPI dashboard & cash flow forecasting',
+            'Tax optimization strategies',
+            'Business entity advisory',
+            'Priority response & dedicated account manager'
+          ];
+        }
+
+        // Add service-specific notes
+        if (wantsPayroll && !pkgFeatures.some(f => f.toLowerCase().includes('payroll'))) {
+          pkgFeatures.push('Payroll processing included');
+        }
+        if (selectedSvcs.includes('entity-formation')) {
+          pkgFeatures.push('Business entity formation service available');
+        }
+        if (selectedSvcs.includes('irs-notice')) {
+          pkgFeatures.push('IRS notice response support included');
+        }
+        if (selectedSvcs.includes('other') && otherText.value.trim()) {
+          pkgFeatures.push('Custom services: we\'ll discuss your specific needs');
+        }
+
+        recText.textContent = 'Based on your business size and needs, we recommend our ' + pkgName + ':';
+
+        pkgDetails.innerHTML =
+          '<div style="margin: 16px 0 0;">' +
+            '<span class="package-badge">' + pkgName + '</span>' +
+            '<span class="package-price">' + pkgPrice + '</span>' +
+            '<p class="package-description">' + pkgDesc + '</p>' +
+            '<ul class="package-features">' +
+              pkgFeatures.map(function(f) { return '<li>' + f + '</li>'; }).join('') +
+            '</ul>' +
+            '<div class="next-steps">' +
+              '<strong>What happens next:</strong>' +
+              '<ol>' +
+                '<li>We\'ll reach out within 24 hours to schedule your free consultation</li>' +
+                '<li>Review this recommendation together and refine it to your situation</li>' +
+                '<li>Receive a customized proposal with transparent pricing</li>' +
+                '<li>Onboard smoothly with our team — we handle the transition</li>' +
+              '</ol>' +
+            '</div>' +
+          '</div>';
+
+        recSection.classList.add('show');
+
+        // Scroll recommendation into view gently if it was hidden before
+        if (!recSection.dataset.shown) {
+          recSection.dataset.shown = '1';
+          setTimeout(function () {
+            recSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }, 100);
+        }
+      }
+
+      revenueSelect.addEventListener('change', updateRecommendation);
+      businessTypeSelect.addEventListener('change', updateRecommendation);
+      employeesSelect.addEventListener('change', updateRecommendation);
+      servicesChecks.forEach(cb => cb.addEventListener('change', updateRecommendation));
+      otherText.addEventListener('input', updateRecommendation);
+
+      // Re-run if revenue already populated (e.g. browser autofill)
+      if (revenueSelect.value) updateRecommendation();
+
+      // ── Inline validation helpers ─────────────────────────────
+      function markValid(input) {
+        input.classList.remove('invalid');
+        input.classList.add('valid');
+        input.setAttribute('aria-invalid', 'false');
+      }
+      function markInvalid(input) {
+        input.classList.remove('valid');
+        input.classList.add('invalid');
+        input.setAttribute('aria-invalid', 'true');
+      }
+      function clearMark(input) {
+        input.classList.remove('valid', 'invalid');
+        input.removeAttribute('aria-invalid');
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      // Live inline validation (only after user leaves the field)
+      document.getElementById('business-name').addEventListener('blur', function () {
+        const err = document.getElementById('business-name-error');
+        if (!this.value.trim()) {
+          err.classList.add('show'); markInvalid(this);
+        } else {
+          err.classList.remove('show'); markValid(this);
+        }
+      });
+
+      revenueSelect.addEventListener('blur', function () {
+        const err = document.getElementById('revenue-error');
+        if (!this.value) {
+          err.classList.add('show'); markInvalid(this);
+        } else {
+          err.classList.remove('show'); markValid(this);
+        }
+      });
+
+      document.getElementById('contact-name').addEventListener('blur', function () {
+        const err = document.getElementById('name-error');
+        if (!this.value.trim()) {
+          err.classList.add('show'); markInvalid(this);
+        } else {
+          err.classList.remove('show'); markValid(this);
+        }
+      });
+
+      emailInput.addEventListener('blur', function () {
+        const err = document.getElementById('email-error');
+        if (!this.value || !emailRegex.test(this.value)) {
+          err.classList.add('show'); markInvalid(this);
+        } else {
+          err.classList.remove('show'); markValid(this);
+        }
+      });
+
+      // Clear invalid state on input
+      document.getElementById('business-name').addEventListener('input', function () {
+        if (this.value.trim()) { document.getElementById('business-name-error').classList.remove('show'); markValid(this); }
+      });
+      document.getElementById('contact-name').addEventListener('input', function () {
+        if (this.value.trim()) { document.getElementById('name-error').classList.remove('show'); markValid(this); }
+      });
+      emailInput.addEventListener('input', function () {
+        if (emailRegex.test(this.value)) { document.getElementById('email-error').classList.remove('show'); markValid(this); }
+        else clearMark(this);
+      });
+
+      // ── Status banner helper ──────────────────────────────────
+      function showStatus(message, type) {
+        const div = document.getElementById('form-status');
+        const msg = document.getElementById('status-message');
+        msg.textContent = message;
+        div.className = type;   // 'success' | 'error'
+        div.style.display = 'block';
+        div.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      // ── Submit ────────────────────────────────────────────────
+      let isSubmitting = false;
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        if (isSubmitting) return;
+
+        // Clear previous errors
+        form.querySelectorAll('.form-error').forEach(el => el.classList.remove('show'));
+        document.getElementById('form-status').style.display = 'none';
+        requiredFields.forEach(f => f.classList.remove('invalid', 'valid'));
+
+        let valid = true;
+
+        const bizName = document.getElementById('business-name');
+        if (!bizName.value.trim()) {
+          document.getElementById('business-name-error').classList.add('show');
+          markInvalid(bizName);
+          valid = false;
+        }
+
+        if (!revenueSelect.value) {
+          document.getElementById('revenue-error').classList.add('show');
+          markInvalid(revenueSelect);
+          valid = false;
+        }
+
+        const cName = document.getElementById('contact-name');
+        if (!cName.value.trim()) {
+          document.getElementById('name-error').classList.add('show');
+          markInvalid(cName);
+          valid = false;
+        }
+
+        if (!emailInput.value || !emailRegex.test(emailInput.value)) {
+          document.getElementById('email-error').classList.add('show');
+          markInvalid(emailInput);
+          valid = false;
+        }
+
+        if (!valid) {
+          const firstErr = form.querySelector('.form-error.show');
+          if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+
+        // Submit
+        isSubmitting = true;
+        const origText = submitBtn.innerHTML;
+        submitBtn.innerHTML = 'Sending…';
+        submitBtn.disabled = true;
+
+        try {
+          const resp = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (resp.ok) {
+            window.location.href = 'thank-you.html';
+          } else {
+            try {
+              const errData = await resp.json();
+              console.error('Formspree error:', errData);
+            } catch (_) {}
+            showStatus('Sorry, there was an error submitting the form. Please try again or email us at info@goldenflowaccountingtax.com', 'error');
+            submitBtn.innerHTML = origText;
+            submitBtn.disabled = false;
+            isSubmitting = false;
+          }
+        } catch (err) {
+          console.error('Submission error:', err);
+          showStatus('Network error. Please check your connection and try again.', 'error');
+          submitBtn.innerHTML = origText;
+          submitBtn.disabled = false;
+          isSubmitting = false;
+        }
+      });
+
+    }); // DOMContentLoaded
+  </script>
+
+  <!-- Footer JS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      const header = document.getElementById('site-header');
+      window.addEventListener('scroll', function () {
+        header.classList.toggle('scrolled', window.scrollY > 20);
+      }, { passive: true });
+    });
+  </script>
+
+  <style>
+    /* Visually hidden but accessible to screen readers */
+    .visually-hidden {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+
 </body>
 </html>
