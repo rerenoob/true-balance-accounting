@@ -301,6 +301,26 @@
     .privacy-meta .read-time,
     .privacy-meta .print-button {
       margin-left: 12px;
+    }
+    /* Highlight boxes for important notes */
+    .highlight-box {
+      background: #f0f7f0;
+      border-left: 4px solid #2E7D32;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .highlight-box strong {
+      color: #2E7D32;
+    }
+    .highlight-box a {
+      color: #2E7D32;
+      text-decoration: underline;
+    }
+    .highlight-box a:hover {
+      color: #1B5E20;
     }</style>
 </head>
 <body>
@@ -328,13 +348,15 @@
 
     <main id="main-content">
     <div class="policy-container">
-      <div class="policy-header">
+            <div class="privacy-header">
         <h1>Terms of Service</h1>
-        <p class="policy-subtitle">Last Updated: April 10, 2026</p>
-        <div class="header-meta">
+        <p class="privacy-meta">
+          <strong>Golden Flow LLC</strong> &mdash; Golden Flow Accounting and Tax<br />
+          Last Updated: <strong>April 10, 2026</strong> &nbsp;&bull;&nbsp; Effective Date: <strong>April 10, 2026</strong>
           <span class="read-time">~3 min read</span>
           <a href="javascript:window.print()" class="print-button" title="Print this page">Print</a>
-        </div>
+        </p>
+      </div>
         <p class="policy-intro">
           These Terms of Service ("Terms") govern your use of the Golden Flow Accounting & Tax website 
           and services. By accessing our website or submitting information through our forms, you agree 
@@ -342,9 +364,10 @@
         </p>
       </div>
 
-      <div class="toc-container">
-        <h2>Table of Contents</h2>
-        <ol class="toc-list">
+            <!-- Table of Contents -->
+      <nav class="toc" aria-label="Policy sections">
+        <h2>Contents</h2>
+        <ol>
           <li><a href="#services">Services Overview</a></li>
           <li><a href="#consultation">Free Consultation Terms</a></li>
           <li><a href="#data-submission">Information Submission</a></li>
@@ -354,20 +377,20 @@
           <li><a href="#changes">Changes to Terms</a></li>
           <li><a href="#contact">Contact Information</a></li>
         </ol>
-      </div>
+      </nav>
 
-      <div class="policy-section" id="services">
-        <h2>1. Services Overview</h2>
+      <section class="policy-section" id="services">
+        <h2><span class="section-icon">&#128736;</span> 1. Services Overview</h2>
         <p>Golden Flow Accounting & Tax ("we," "us," or "our") provides accounting, bookkeeping, 
         tax preparation, and related financial services to businesses and individuals in Texas.</p>
-        <p><strong>Important:</strong> The information provided on our website, including any 
+        <div class="highlight-box">
+          <strong>Important:</strong> The information provided on our website, including any 
         automated service recommendations generated through our onboarding form, is for 
         informational purposes only and does not constitute professional accounting or tax advice. 
-        All formal engagements require a signed written agreement.</p>
-      </div>
+        All formal engagements require a signed written agreement.</section>
 
-      <div class="policy-section" id="consultation">
-        <h2>2. Free Consultation Terms</h2>
+      <section class="policy-section" id="consultation">
+        <h2><span class="section-icon">&#128172;</span> 2. Free Consultation Terms</h2>
         <p>We offer a complimentary 30-minute initial consultation to:</p>
         <ul>
           <li>Discuss your business needs and goals</li>
@@ -375,13 +398,14 @@
           <li>Provide a customized service proposal</li>
           <li>Answer your questions about our processes</li>
         </ul>
-        <p><strong>No Obligation:</strong> The consultation is provided at no cost and with no 
+        <div class="highlight-box">
+          <strong>No Obligation:</strong> The consultation is provided at no cost and with no 
         obligation to engage our services. We will not pressure you to sign any agreement during 
         or immediately after the consultation.</p>
-      </div>
+      </section>
 
-      <div class="policy-section" id="data-submission">
-        <h2>3. Information Submission</h2>
+      <section class="policy-section" id="data-submission">
+        <h2><span class="section-icon">&#128202;</span> 3. Information Submission</h2>
         <p>When you submit information through our website forms:</p>
         <ul>
           <li>You represent that all information provided is accurate and complete</li>
@@ -394,10 +418,10 @@
         match your business with appropriate service tiers and pricing. This information helps 
         us provide relevant recommendations but does not determine final pricing, which is 
         customized based on your specific needs.</p>
-      </div>
+      </section>
 
-      <div class="policy-section" id="communications">
-        <h2>4. Electronic Communications</h2>
+      <section class="policy-section" id="communications">
+        <h2><span class="section-icon">&#128238;</span> 4. Electronic Communications</h2>
         <p>By submitting your contact information, you consent to receive communications from 
         us regarding:</p>
         <ul>
@@ -414,10 +438,10 @@
         </ul>
         <p><strong>Opt-Out:</strong> You may opt out of marketing communications at any time 
         by replying "STOP" to any SMS or clicking the unsubscribe link in emails.</p>
-      </div>
+      </section>
 
-      <div class="policy-section" id="liability">
-        <h2>5. Limitation of Liability</h2>
+      <section class="policy-section" id="liability">
+        <h2><span class="section-icon">&#128683;</span> 5. Limitation of Liability</h2>
         <p>To the fullest extent permitted by law:</p>
         <ul>
           <li>We are not liable for any indirect, incidental, or consequential damages</li>
@@ -425,31 +449,31 @@
           <li>We make no warranties about the accuracy of automated recommendations</li>
           <li>Professional services are governed by separate engagement letters</li>
         </ul>
-      </div>
+      </section>
 
-      <div class="policy-section" id="governing-law">
-        <h2>6. Governing Law</h2>
+      <section class="policy-section" id="governing-law">
+        <h2><span class="section-icon">&#9878;&#65039;</span> 6. Governing Law</h2>
         <p>These Terms are governed by the laws of the State of Texas, without regard to 
         conflict of law principles. Any disputes shall be resolved in the state or federal 
         courts located in Travis County, Texas.</p>
-      </div>
+      </section>
 
-      <div class="policy-section" id="changes">
-        <h2>7. Changes to Terms</h2>
+      <section class="policy-section" id="changes">
+        <h2><span class="section-icon">&#128260;</span> 7. Changes to Terms</h2>
         <p>We may update these Terms from time to time. The "Last Updated" date at the top 
         of this page indicates when changes were made. Continued use of our website after 
         changes constitutes acceptance of the new Terms.</p>
-      </div>
+      </section>
 
-      <div class="policy-section" id="contact">
-        <h2>8. Contact Information</h2>
+      <section class="policy-section" id="contact">
+        <h2><span class="section-icon">&#128222;</span> 8. Contact Information</h2>
         <p>If you have questions about these Terms, please contact us:</p>
         <div class="contact-info">
           <p><strong>Golden Flow Accounting & Tax</strong><br>
           Email: <a href="mailto:info@goldenflowaccountingtax.com">info@goldenflowaccountingtax.com</a><br>
           Response Time: Within 24 business hours</p>
         </div>
-      </div>
+      </section>
 
       <div class="policy-note">
         <p><strong>Note:</strong> These Terms of Service complement our 
