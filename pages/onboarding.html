@@ -1441,7 +1441,6 @@
         const honeypot = form.querySelector('input[name="website"]');
         if (honeypot && honeypot.value.trim() !== '') {
           // Bot detected - silently fail without any feedback
-          console.log('Bot detected via honeypot field');
           return;
         }
 
