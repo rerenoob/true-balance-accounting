@@ -8,11 +8,11 @@ Professional website for **Golden Flow Accounting & Tax** (Golden Flow LLC) — 
 golden-flow-accounting/
 ├── index.html              # Main landing page
 ├── pages/                  # Additional HTML pages
-│   ├── business-plan.html
-│   ├── client-facing-projects.html
-│   ├── onboarding.html
-│   ├── technical-roadmap.html
-│   └── thank-you.html
+│   ├── client-facing-projects.html  # Client-facing feature ideas
+│   ├── onboarding.html              # Client onboarding form
+│   ├── privacy-policy.html          # Legal: Privacy policy
+│   ├── terms-of-service.html        # Legal: Terms of service
+│   └── thank-you.html               # Post-submission thank you page
 ├── css/                    # Stylesheets
 │   └── style.css
 ├── assets/                 # Images, icons, fonts
