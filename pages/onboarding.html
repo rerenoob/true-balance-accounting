@@ -1082,9 +1082,9 @@
             </div>
             
             <p class="consent-note">
-              <strong>How we use your information:</strong> Annual revenue data helps us match 
-              you with appropriate service tiers. Automated recommendations are starting points 
-              for discussion, not professional advice. After submission, we'll email a confirmation 
+              <strong>How we use your information:</strong> Annual revenue data helps us match
+              you to a Starter, Growth, or Established plan. Automated recommendations are starting points
+              for discussion, not professional advice. After submission, we'll email a confirmation
               and call within 24 business hours to schedule your free consultation.
             </p>
           </div>
@@ -1249,59 +1249,41 @@
         // Determine package
         let pkgName, pkgPrice, pkgDesc, pkgFeatures;
 
-        if (revenue === 'under-50k') {
-          pkgName  = 'Starter Package';
-          pkgPrice = '$199/month';
-          pkgDesc  = 'Perfect for solo owners and micro-businesses that need accurate books and stress-free tax filing.';
+        if (revenue === 'under-50k' || (revenue === '50k-100k' && !isComplex)) {
+          pkgName  = 'Starter';
+          pkgPrice = '$150/month';
+          pkgDesc  = 'Ideal for small businesses under $100k — clean books, accurate records, and peace of mind each month.';
           pkgFeatures = [
-            'Monthly bookkeeping & bank reconciliation',
-            'Basic financial statements (P&L, Balance Sheet)',
-            'Quarterly estimated tax calculations',
-            'Unlimited email support',
-            'Annual tax preparation (1040 + Schedule C or 1065)'
-          ];
-        } else if (revenue === '50k-100k' && !isComplex) {
-          pkgName  = 'Starter Package';
-          pkgPrice = '$199/month';
-          pkgDesc  = 'Solid foundation for your growing business — clean books, timely filings, and peace of mind.';
-          pkgFeatures = [
-            'Monthly bookkeeping & bank reconciliation',
-            'Basic financial statements (P&L, Balance Sheet)',
-            'Quarterly estimated tax calculations',
-            'Unlimited email support',
-            'Annual tax preparation'
+            'Monthly transaction review (<20 transactions/mo)',
+            'Bank reconciliation (up to 2 accounts)',
+            'Basic financial accuracy check',
+            'Month-end closing'
           ];
         } else if (revenue === '50k-100k' || revenue === '100k-250k' || revenue === '250k-500k') {
-          pkgName  = 'Business Package';
-          pkgPrice = '$499/month';
-          pkgDesc  = 'Comprehensive accounting for growing businesses — deeper insights, proactive planning, and full compliance.';
+          pkgName  = 'Growth';
+          pkgPrice = '$300/month';
+          pkgDesc  = 'Built for growing businesses — comprehensive categorization, reporting, and reconciliation.';
           pkgFeatures = [
-            'Everything in Starter, plus:',
-            'Monthly financial reports with cash flow insights',
-            'Sales tax filing (Texas)',
-            'Quarterly business review calls',
-            'Annual tax planning session',
-            'Payroll processing available as add-on'
+            'Monthly transaction review & categorization',
+            'Bank & credit card reconciliation (up to 4 accounts)',
+            'Month-end closing',
+            'Basic financial reporting (P&L, Balance Sheet)'
           ];
         } else {
           // 500k-1m or over-1m
-          pkgName  = 'Growth Package';
-          pkgPrice = '$999/month';
-          pkgDesc  = 'Strategic accounting partnership for established businesses that need CFO-level guidance.';
+          pkgName  = 'Established';
+          pkgPrice = '$600/month';
+          pkgDesc  = 'Full-service bookkeeping for established businesses that need detailed reporting and priority support.';
           pkgFeatures = [
-            'Everything in Business, plus:',
-            'Monthly CFO-level financial insights',
-            'Custom KPI dashboard & cash flow forecasting',
-            'Tax optimization strategies',
-            'Business entity advisory',
-            'Priority response & dedicated account manager'
+            'Monthly transaction review & categorization',
+            'Bank & credit card reconciliation (up to 8 accounts)',
+            'Month-end closing',
+            'Financial reports (P&L, Balance Sheet, Cash Flow)',
+            'Priority support'
           ];
         }
 
         // Add service-specific notes
-        if (wantsPayroll && !pkgFeatures.some(f => f.toLowerCase().includes('payroll'))) {
-          pkgFeatures.push('Payroll processing included');
-        }
         if (selectedSvcs.includes('entity-formation')) {
           pkgFeatures.push('Business entity formation service available');
         }
@@ -1312,7 +1294,16 @@
           pkgFeatures.push('Custom services: we\'ll discuss your specific needs');
         }
 
-        recText.textContent = 'Based on your business size and needs, we recommend our ' + pkgName + ':';
+        recText.textContent = 'Based on your business size and needs, we recommend our ' + pkgName + ' plan:';
+
+        const addOns = [
+          { name: 'Quarterly Financial Consultation', price: '$150/quarter' },
+          { name: 'Payroll', price: '$50 setup + $109/mo + $14/employee' },
+          { name: 'Sales Tax Filing', price: '$50/period' },
+          { name: '1099 Filing', price: '$15/1099' },
+          { name: 'Company Formation', price: '$100/entity' },
+          { name: 'Custom Services', price: 'AP/AR, Budgeting & Forecasting, CFO Advisory, Catch-up bookkeeping — ask us' }
+        ];
 
         pkgDetails.innerHTML =
           '<div style="margin: 16px 0 0;">' +
@@ -1322,6 +1313,12 @@
             '<ul class="package-features">' +
               pkgFeatures.map(function(f) { return '<li>' + f + '</li>'; }).join('') +
             '</ul>' +
+            '<div class="next-steps" style="margin-top:20px;">' +
+              '<strong>Available Add-Ons</strong>' +
+              '<ul class="package-features" style="margin-top:8px;">' +
+                addOns.map(function(a) { return '<li><strong>' + a.name + '</strong> — ' + a.price + '</li>'; }).join('') +
+              '</ul>' +
+            '</div>' +
             '<div class="next-steps">' +
               '<strong>What happens next:</strong>' +
               '<ol>' +
