@@ -745,6 +745,43 @@ button { cursor: pointer; }
   text-decoration: underline;
 }
 
+.pricing-note + .pricing-note {
+  margin-top: 0.5rem;
+}
+
+/* Add-ons subsection */
+.pricing-addons {
+  margin-top: 4rem;
+}
+
+.pricing-addons .section-header {
+  margin-bottom: 2rem;
+}
+
+.pricing-addons .section-header h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.5vw, 1.875rem);
+  line-height: 1.25;
+  color: var(--color-primary);
+  margin-bottom: 16px;
+}
+
+.addons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.pricing-price--stacked {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.pricing-price--stacked .pricing-amount {
+  font-size: 1.75rem;
+}
+
 /* ================================================================
    ABOUT
    ================================================================ */
@@ -1154,6 +1191,8 @@ select { cursor: pointer; }
 
   .services-grid { grid-template-columns: 1fr; }
 
+  .addons-grid { grid-template-columns: 1fr; }
+
   .pillars-grid { grid-template-columns: 1fr; gap: 28px; }
 
   .form-row { grid-template-columns: 1fr; }
@@ -1351,4 +1390,4 @@ select { cursor: pointer; }
   .section { padding: 40px 0; }
 }
 
-/* cache-bust: 1774931670 */
+/* cache-bust: 1746374400 */
