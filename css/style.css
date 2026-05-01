@@ -607,6 +607,17 @@ button { cursor: pointer; }
   color: #fff;
 }
 
+.pricing-subtitle {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin: 2px 0 0;
+  line-height: 1.4;
+}
+
+.pricing-card--featured .pricing-subtitle {
+  color: rgba(255,255,255,.7);
+}
+
 .pricing-price {
   display: flex;
   align-items: baseline;
